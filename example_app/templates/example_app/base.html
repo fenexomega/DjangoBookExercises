@@ -1,5 +1,7 @@
 <html>
 <head>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static "example_app/css/base/style.css" %}">
 	<title>
 		{% block title_html %}
 		{% endblock %}
