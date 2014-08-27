@@ -1,11 +1,33 @@
 {% extends "example_app/base.html" %}
 {% block title_html %}
-	Hello World Title
+	Projects list
 {% endblock %}
 {% block h1 %}
-	{{ bloc.super }} Hello World Django
+	{{ bloc.super }} Projects list
 {% endblock %}
 {% block article_content %}
-	Hello World!
+	<h3>{{ action }}</h3>
+	{% if all_projects|length > 0 %}
+	<table>
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>Title</td>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for p in all_projects %}
+			<tr>
+				<td>{{ p.id }}</td>
+				<td>{{ p.title }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% else %}
+		<span> There are no projects</span>
+	{% endif %}
+
 {% endblock %}
 

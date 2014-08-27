@@ -1,3 +1,3 @@
 #!/bin/bash
-python manage.py schemamigration example_app
-python manage.py migrate
+python2 manage.py schemamigration example_app --auto
+python2 manage.py migrate example_app
