@@ -3,30 +3,33 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from example_app.models import Supervisor, Developer
 from django import forms
+from datetime import datetime
 
-class Form_inscription(forms.Form):
+class Form_Developer(forms.Form):
 	name = forms.CharField(label="Name",max_length=30)
 	login = forms.CharField(label="Login",max_length=30)
 	password = forms.CharField(label="Password",widget=forms.PasswordInput)
+	password_confirmation = forms.CharField(label="Password Confirmation",widget=forms.PasswordInput)
 	supervisor = forms.ModelChoiceField(label="Supervisor",queryset=Supervisor.objects.all())
 
 
 def page(request):
+	all_supervisors = Supervisor.objects.all()
+	form = Form_Developer()
 	if request.POST:
-		form = Form_inscription(request.POST)
+		form = Form_Developer(request.POST)
 		# Se o formulário foi postado, iremos pegar as informações dele
 		if form.is_valid():
 			name = form.cleaned_data['name']
 			password = form.cleaned_data['password']
 			password_confirmation = form.cleaned_data['password_confirmation']
 			if password != password_confirmation :
-				return render(request,'example_app/register_developer.html', {'form':form})
+				HttpResponse("Incorrect Password")
 			supervisor = form.cleaned_data['supervisor']
-			new_developer = Developer(name=name,password=password,email='',supervisor=supervisor)
+			new_developer = Developer(name=name,password=password,email='daoraavida@email.com',supervisor=supervisor,date_created=datetime.now())
 			new_developer.save()
 			return HttpResponse("Developer Added")
 		else:
-			return render(request,'example_app/register_developer.html', {'form':form})
+			return render(request,'example_app/create_developer.html', {'form':form})
 	else:
-		form = Form_inscription()
-		return render(request,'example_app/register_developer.html', {'form':form})
+		return render(request,'example_app/create_developer.html', {'form':form,'all_supervisors':all_supervisors})
