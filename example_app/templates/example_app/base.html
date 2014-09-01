@@ -8,6 +8,12 @@
 	</title>
 </head>
 <body>
+	<div>
+		<a href="{% url "index" %}">Página Inicial</a><br />
+		<a href="{% url "create_developer" %}">Criar Desenvolvedor</a><br />
+		<a href="{% url "create_project" %}">Criar Projeto</a><br />
+		<a href="{% url "create_supervisor" %}">Criar Supervisor</a><br />
+	</div>
 	<h1>
 		example_app - {% block h1 %}{% endblock %}
 	</h1>

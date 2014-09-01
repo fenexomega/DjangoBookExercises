@@ -1,8 +1,14 @@
 from django.db import models
 
+
+error_name = {
+		'required':'You must type a name',
+		'invalid': 'Wrong format!'
+	}
+
 class UserProfile(models.Model):
-	name 			= models.CharField(max_length=50, verbose_name="Name")
-	login 			= models.CharField(max_length=30,verbose_name="Login")
+	name 			= models.CharField(max_length=50,verbose_name="Name",error_messages=error_name)
+	login 			= models.CharField(max_length=30,verbose_name="Login",blank=False)
 	password 		= models.CharField(max_length=30,verbose_name="Password")
 	phone 			= models.CharField(max_length=20,verbose_name="Phone")
 	born_date 		= models.DateField(verbose_name="Born date", null=True,blank=True)

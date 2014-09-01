@@ -33,4 +33,19 @@ def page(request):
 	if len(request.POST) > 0 :
 		form = Form_Supervisor(request.POST)
 		if form.is_valid():
-			
+			form.save()
+			HttpResponseRedirect(reverse('public_index'))
+		else:
+			return render(request,'example_app/create_supervisor',{'form':form})
+	else:
+		form = Form_Supervisor()
+		return render(request,'example_app/create_supervisor.html',{'form':form})
+
+
+class Form_Supervisor(forms.ModelForm):
+	class Meta:
+		model = Supervisor
+		exclude = ('date_created','last_connection')
+		widgets = {
+			'password':forms.PasswordInput(),
+		}

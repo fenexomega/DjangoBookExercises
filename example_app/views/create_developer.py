@@ -5,12 +5,28 @@ from example_app.models import Supervisor, Developer
 from django import forms
 from datetime import datetime
 
+
 class Form_Developer(forms.Form):
 	name = forms.CharField(label="Name",max_length=30)
 	login = forms.CharField(label="Login",max_length=30)
 	password = forms.CharField(label="Password",widget=forms.PasswordInput)
 	password_confirmation = forms.CharField(label="Password Confirmation",widget=forms.PasswordInput)
 	supervisor = forms.ModelChoiceField(label="Supervisor",queryset=Supervisor.objects.all())
+	def clean(self):
+		cleaned_data = super(Form_Developer, self).clean()
+		#Checar se os passwords são iguais
+		password = self.cleaned_data.get('password',None)
+		password_confirmation = self.cleaned_data.get('password_confirmation',None)
+		if password and password_confirmation and password != password_confirmation:
+			#mostre aviso de erro no formulário
+			raise forms.ValidationError("Passwords are not identical!")
+		return self.cleaned_data
+	# class Meta:
+	# 	model = Developer
+	# 	fields = ('name','login','password','supervisor')
+	# 	widgets = {
+	# 		'password':forms.PasswordInput(),
+	# 	}
 
 
 def page(request):
@@ -21,12 +37,10 @@ def page(request):
 		# Se o formulário foi postado, iremos pegar as informações dele
 		if form.is_valid():
 			name = form.cleaned_data['name']
-			password = form.cleaned_data['password']
-			password_confirmation = form.cleaned_data['password_confirmation']
-			if password != password_confirmation :
-				HttpResponse("Incorrect Password")
+			login = form.cleaned_data['login']
 			supervisor = form.cleaned_data['supervisor']
-			new_developer = Developer(name=name,password=password,email='daoraavida@email.com',supervisor=supervisor,date_created=datetime.now())
+			password = form.cleaned_data['password']
+			new_developer = Developer(name=name,login=login,password=password,email='daoraavida@email.com',supervisor=supervisor,date_created=datetime.now())
 			new_developer.save()
 			return HttpResponse("Developer Added")
 		else:

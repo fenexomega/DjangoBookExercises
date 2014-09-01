@@ -1,0 +1,18 @@
+{% extends "example_app/base.html" %}
+{% block title_html %}
+	Create Project
+{% endblock %}
+{% block h1 %}
+	Create a Project
+{% endblock %}
+{% block article_content %}
+	<form method="post" action="{% url "create_project" %}">
+			{% csrf_token %}
+		<table>
+			{{ form.as_table }}
+			<td>
+				<input type="submit" name="Valid" value="Submeter" />
+			</td>
+		</table>		
+	</form>
+{% endblock %}
