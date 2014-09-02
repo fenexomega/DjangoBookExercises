@@ -1,8 +1,9 @@
+#  encoding: utf-8
 from django.db import models
 
 
 error_name = {
-		'required':'You must type a name',
+		'required':'Você deve digitar um nome',
 		'invalid': 'Wrong format!'
 	}
 
@@ -39,6 +40,8 @@ class Task(models.Model):
 	time_lapsed 	= models.IntegerField(verbose_name="Elapsed time",null=True,default=None,blank=True)
 	importance  	= models.ForeignKey(Project,verbose_name="Project",null=True,default=None,blank=True)
 	developers		= models.ManyToManyField(Developer, through="DeveloperWorkTask")
+	def __unicode__(self):
+		return self.title
 
 class DeveloperWorkTask(models.Model):
 	developer = models.ForeignKey(Developer)

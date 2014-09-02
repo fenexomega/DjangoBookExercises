@@ -34,7 +34,7 @@ def page(request):
 		form = Form_Supervisor(request.POST)
 		if form.is_valid():
 			form.save()
-			HttpResponseRedirect(reverse('public_index'))
+			HttpResponseRedirect(reverse('index'))
 		else:
 			return render(request,'example_app/create_supervisor',{'form':form})
 	else:

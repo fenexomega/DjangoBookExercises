@@ -8,15 +8,18 @@
 	</title>
 </head>
 <body>
-	<div>
-		<a href="{% url "index" %}">Página Inicial</a><br />
-		<a href="{% url "create_developer" %}">Criar Desenvolvedor</a><br />
-		<a href="{% url "create_project" %}">Criar Projeto</a><br />
-		<a href="{% url "create_supervisor" %}">Criar Supervisor</a><br />
-		<a href="{% url "create_task" %}">Criar Tarefa</a><br />
-		<a href="{% url "project_detail" %}">Projetos</a><br />
-
+	<div id="visualizar_componentes">
+		<a href="{% url "index" %}">Página Inicial</a>
+		<a href="{% url "project_detail" %}">Projetos</a>
+		<a href="{% url "task_list" %}">Tarefas</a>
 	</div>
+	<div id="criar_componentes">
+		<a href="{% url "create_developer" %}">Criar Desenvolvedor</a>
+		<a href="{% url "create_project" %}">Criar Projeto</a>
+		<a href="{% url "create_supervisor" %}">Criar Supervisor</a>
+		<a href="{% url "create_task" %}">Criar Tarefa</a>
+	</div>
+
 	<h1>
 		example_app - {% block h1 %}{% endblock %}
 	</h1>

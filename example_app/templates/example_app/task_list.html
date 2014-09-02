@@ -1,0 +1,33 @@
+{% extends "example_app/base.html" %}
+{% block title_html %}
+	Projects list
+{% endblock %}
+{% block h1 %}
+	{{ bloc.super }} Projects list
+{% endblock %}
+{% block article_content %}
+	<h3>{{ action }}</h3>
+	<table class="tables">
+	{% if object_list|length > 0 %}
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Title</td>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for task in object_list %}
+			<tr>
+				<td><a href="{% url "task_detail" task.id %}">{{ task.title }}</a></td>
+				<td>{{ task.description }}</td>
+				<td><a href="{% url "update_task" task.id %}">Update</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% else %}
+		<span> There are no tasks</span>
+	{% endif %}
+{% endblock %}
+

@@ -1,0 +1,14 @@
+{% extends "example_app/base.html" %}
+{% block title_html %}
+	Projects list
+{% endblock %}
+{% block h1 %}
+	{{ bloc.super }} Projects list
+{% endblock %}
+{% block article_content %}
+	<h1>{{ object.title }}</h1>
+	<h2>Descrição:</h2>
+	<p>{{ object.description }}</p>
+
+{% endblock %}
+

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from example_app.models import Supervisor, Developer
 from django import forms
 from datetime import datetime
+from django.core.urlresolvers import reverse
 
 
 class Form_Developer(forms.Form):
@@ -42,7 +43,7 @@ def page(request):
 			password = form.cleaned_data['password']
 			new_developer = Developer(name=name,login=login,password=password,email='daoraavida@email.com',supervisor=supervisor,date_created=datetime.now())
 			new_developer.save()
-			return HttpResponse("Developer Added")
+			return HttpResponseRedirect(reverse('index'))
 		else:
 			return render(request,'example_app/create_developer.html', {'form':form})
 	else:
