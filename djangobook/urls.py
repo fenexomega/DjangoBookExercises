@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import CreateView, DetailView, UpdateView
-from example_app.models import Project,Task
+from example_app.models import Project,Task, Developer
 from django.views.generic.list import ListView
 
 from django.contrib import admin
@@ -19,9 +19,11 @@ urlpatterns = patterns('',
     # url(r'^create_project$','example_app.views.create_project.page',name='create_project'),
     url(r'^create_project$',CreateView.as_view(model=Project, template_name="example_app/create_project.html",success_url='index'),name="create_project"),
     url(r'^create_task$',CreateView.as_view(model=Task, template_name="example_app/create_task.html",success_url="index"),name="create_task"),
-    #url(r'^connection$', 'example_app.views.connection.page', name="public_connection")
+    url(r'^connection$', 'example_app.views.connection.page', name="public_connection"),
     url(r'^project_list$',ListView.as_view(model=Project,template_name="example_app/detail_project.html"),name="project_detail"),
-    url(r'^task_detail_(?P<pk>\d+)$',DetailView.as_view(model=Task,template_name="example_app/detail_task.html"),name="task_detail"),
-    url(r'^task_list$',ListView.as_view(model=Task,template_name="example_app/task_list.html"),name="task_list"),
-    url(r'^update_task_(?P<pk>\d+)$',UpdateView.as_view(model=Task,template_name="example_app/update_task.html",success_url="index"),name="update_task")
+    url(r'^detail_task_(?P<pk>\d+)$','example_app.views.detail_task.page',name="detail_task"),
+    url(r'^task_list$',"example_app.views.list_task.page",name="list_task"),
+    url(r'^update_task_(?P<pk>\d+)$',UpdateView.as_view(model=Task,template_name="example_app/update_task.html",success_url="index"),name="update_task"),
+    url(r'^list_developers$',ListView.as_view(model=Developer,template_name='example_app/list_developer.html'),name='list_developer'),
+    url(r'^logout$',"example_app.views.logout.page",name="logout")
 )

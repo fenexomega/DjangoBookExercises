@@ -9,6 +9,6 @@
 	<h1>{{ object.title }}</h1>
 	<h2>Descrição:</h2>
 	<p>{{ object.description }}</p>
-
+	<a href="{% url "update_task" object.id %}">Update</a>
 {% endblock %}
 

@@ -12,22 +12,22 @@
 		<thead>
 			<tr>
 				<td>Name</td>
-				<td>Title</td>
+				<td>Login</td>
+				<td>Data de criação</td>
 			</tr>
 		</thead>
 
 		<tbody>
-			{% for task in object_list %}
+			{% for dev in object_list %}
 			<tr>
-				<td><a href="{% url "task_detail" task.id %}">{{ task.title }}</a></td>
-				<td>{{ task.description }}</td>
-				<td><a href="{% url "update_task" task.id %}">Update</a></td>
+				<td>{{ dev }}</td>
+				<td>{{ dev.user_auth.username }}</td>
+				<td>{{ dev.date_created }}</td>
 			</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 	{% else %}
-		<span> There are no tasks</span>
+		<span> There are no Developers</span>
 	{% endif %}
 {% endblock %}
-

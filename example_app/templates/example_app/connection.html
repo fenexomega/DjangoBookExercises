@@ -1,0 +1,20 @@
+{% extends "example_app/base.html" %}
+
+{% block article_content %}
+	{% if user.is_authenticated %}
+		<h1> You are connected </h1>
+		<p>
+			Your email: {{ user.email }}
+		</p>
+	{% else %}
+		<h1> You are not connected </h1>
+		<form method="post" action="{% url "public_connection" %}">
+			{% csrf_token %}
+			{{ form.as_table }}
+			<td>
+				<input value="Connect" type="submit" class="Button" />
+			</td>
+		</form>
+	{% endif %}
+{% endblock %}
+

@@ -1,24 +1,17 @@
 #  encoding: utf-8
 from django.db import models
-
-
-error_name = {
-		'required':'Você deve digitar um nome',
-		'invalid': 'Wrong format!'
-	}
+from django.contrib.auth.models import User
+from datetime import datetime
 
 class UserProfile(models.Model):
-	name 			= models.CharField(max_length=50,verbose_name="Name",error_messages=error_name)
-	login 			= models.CharField(max_length=30,verbose_name="Login",blank=False)
-	password 		= models.CharField(max_length=30,verbose_name="Password")
+	user_auth 		= models.OneToOneField(User,primary_key=True)
 	phone 			= models.CharField(max_length=20,verbose_name="Phone")
 	born_date 		= models.DateField(verbose_name="Born date", null=True,blank=True)
 	last_connection = models.DateTimeField(verbose_name="Date of last connection", null=True,blank=True,default=None)
-	email 			= models.EmailField(verbose_name="Email")
 	years_seniority = models.IntegerField(verbose_name="Seniority",default=0)
-	date_created 	= models.DateField(verbose_name="Date of Birthday")
+	date_created 	= models.DateField(verbose_name="Date of Birthday",default=datetime.now())
 	def __unicode__(self):
-		return self.name
+		return self.user_auth.last_name
 	
 class Project(models.Model):
 	title 			= models.CharField(max_length=100, verbose_name="Title")
