@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required
 
 class Form_Supervisor(forms.Form):
 	name = forms.CharField(label="Name")
@@ -22,6 +22,7 @@ class Form_Supervisor(forms.Form):
 			raise forms.ValidationError("Passwords aren't indentical")
 		return self.cleaned_data
 
+@login_required
 def page(request):
 	if request.POST:
 		form = Form_Supervisor(request.POST)
