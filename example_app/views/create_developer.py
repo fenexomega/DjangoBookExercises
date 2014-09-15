@@ -6,6 +6,8 @@ from django import forms
 from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
 
 
 class Form_Developer(forms.Form):
@@ -25,7 +27,7 @@ class Form_Developer(forms.Form):
 			raise forms.ValidationError("Passwords are not identical!")
 		return self.cleaned_data
 
-
+@login_required
 def page(request):
 	all_supervisors = Supervisor.objects.all()
 	form = Form_Developer()

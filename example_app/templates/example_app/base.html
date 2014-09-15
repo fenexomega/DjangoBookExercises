@@ -20,7 +20,13 @@
 		<a href="{% url "create_supervisor" %}">Criar Supervisor</a>
 		<a href="{% url "create_task" %}">Criar Tarefa</a>
 	</div>
-
+	<div id="login">
+		{% if not user.is_authenticated %}
+			<a href="{% url "public_connection" %}">login</a>
+		{% else %}
+			<a href="{% url "logout" %}">logout</a>
+		{% endif %}
+	</div>
 	<h1>
 		example_app - {% block h1 %}{% endblock %}
 	</h1>

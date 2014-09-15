@@ -22,7 +22,7 @@ SECRET_KEY = 'k9t%9mo1*r8l%ytq5anq3tv^v7%*$4vlo1p2oulov9hf-$j^e('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
+LOGIN_URL = 'public_connection'
 
 DEFAULT_CHARSET = 'utf-8'
 

@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
-
 from example_app.models import UserProfile
+
 
 def page(request):
 	if request.POST:
@@ -14,6 +14,8 @@ def page(request):
 			user = authenticate(username=username,password=password)
 			if user:
 				login(request,user)
+				if request.GET.get('next') is not None:
+					return redirect(request.GET['next'])
 			else:
 				return render(request, 'example_app/connection.html',{'form':form})
 	form = Form_connection()
