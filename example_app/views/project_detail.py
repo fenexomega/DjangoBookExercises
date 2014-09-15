@@ -3,4 +3,4 @@ from django.shortcuts import render
 
 def page(request):
 	projects = Project.objects.all().get(id=pk)
-	return render(request, 'example_app/index.html',{'action':'Display a project in detail','project':project })
+	return render(request, 'index.html',{'action':'Display a project in detail','project':project })

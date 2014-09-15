@@ -17,9 +17,9 @@ def page(request):
 				if request.GET.get('next') is not None:
 					return redirect(request.GET['next'])
 			else:
-				return render(request, 'example_app/connection.html',{'form':form})
+				return render(request, 'connection.html',{'form':form})
 	form = Form_connection()
-	return render(request, 'example_app/connection.html',{'form':form})
+	return render(request, 'connection.html',{'form':form})
 
 class Form_connection(forms.Form):
 	username = forms.CharField(label="Login",max_length=30)

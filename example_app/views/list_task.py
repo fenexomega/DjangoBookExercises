@@ -8,4 +8,4 @@ def page(request):
 	if 'last_task' in request.session:
 		last_task = Task.objects.get(id= request.session['last_task'])
 		tasks = tasks.exclude(id=request.session['last_task'])
-	return render(request,'example_app/list_task.html',{'object_list':tasks,'last_task':last_task})
+	return render(request,'list_task.html',{'object_list':tasks,'last_task':last_task})

@@ -40,10 +40,10 @@ def page(request):
 			new_supervisor.save()
 			return HttpResponseRedirect(reverse('index'))
 		else:
-			return render(request,'example_app/create_supervisor.html',{'form':form})
+			return render(request,'create_supervisor.html',{'form':form})
 	else:
 		form = Form_Supervisor()
-	return render(request,'example_app/create_supervisor.html',{'form':form})
+	return render(request,'create_supervisor.html',{'form':form})
 
 
 
@@ -69,9 +69,9 @@ def page(request):
 # 			new_supervisor.save()
 # 			return HttpResponse("Supervisor Added")
 # 		else:
-# 			return render(request,'example_app/create_supervisor.html',{'form':form})
+# 			return render(request,'create_supervisor.html',{'form':form})
 # 	else:
-# 		return render(request,'example_app/create_supervisor.html',{'form':form})
+# 		return render(request,'create_supervisor.html',{'form':form})
 
 
 
@@ -84,10 +84,10 @@ def page(request):
 # 			form.save()
 # 			HttpResponseRedirect(reverse('index'))
 # 		else:
-# 			return render(request,'example_app/create_supervisor',{'form':form})
+# 			return render(request,'create_supervisor',{'form':form})
 # 	else:
 # 		form = Form_Supervisor()
-# 		return render(request,'example_app/create_supervisor.html',{'form':form})
+# 		return render(request,'create_supervisor.html',{'form':form})
 
 
 

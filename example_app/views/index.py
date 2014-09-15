@@ -8,7 +8,7 @@ from example_app.models import Project
 
 def page(request):
 	all_projects = Project.objects.all()
-	return render(request, 'example_app/index.html',{'action':'Display all projects','all_projects':all_projects })
+	return render(request, 'index.html',{'action':'Display all projects','all_projects':all_projects })
 
 
 def get_client_ip(request):

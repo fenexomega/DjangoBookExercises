@@ -48,9 +48,9 @@ def page(request):
 			new_developer.save()
 			return HttpResponseRedirect(reverse('index'))
 		else:
-			return render(request,'example_app/create_developer.html', {'form':form})
+			return render(request,'create_developer.html', {'form':form})
 	else:
-		return render(request,'example_app/create_developer.html', {'form':form,'all_supervisors':all_supervisors})
+		return render(request,'create_developer.html', {'form':form,'all_supervisors':all_supervisors})
 
 
 
@@ -92,6 +92,6 @@ def page(request):
 # 			new_developer.save()
 # 			return HttpResponseRedirect(reverse('index'))
 # 		else:
-# 			return render(request,'example_app/create_developer.html', {'form':form})
+# 			return render(request,'create_developer.html', {'form':form})
 # 	else:
-# 		return render(request,'example_app/create_developer.html', {'form':form,'all_supervisors':all_supervisors})
+# 		return render(request,'create_developer.html', {'form':form,'all_supervisors':all_supervisors})

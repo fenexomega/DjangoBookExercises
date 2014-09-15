@@ -10,4 +10,4 @@ def page(request,pk):
 		return HttpResponseRedirect(reverse('index'))
 	else:
 		request.session['last_task'] = task.id
-	return render(request,"example_app/detail_task.html",{'object':task})
+	return render(request,"detail_task.html",{'object':task})

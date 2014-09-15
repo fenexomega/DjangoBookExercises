@@ -29,6 +29,6 @@ def page(request):
 			return HttpResponseRedirect(reverse('index'))
 			return HttpResponse("Projeto adicionado")
 		else:
-			return render(request, 'example_app/create_project.html',{'form':form})
+			return render(request, 'create_project.html',{'form':form})
 	else:
-		return render(request, 'example_app/create_project.html',{'form':form})
+		return render(request, 'create_project.html',{'form':form})
